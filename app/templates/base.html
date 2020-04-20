@@ -1,0 +1,29 @@
+<html>
+    <header>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        {% if title %}
+        <title>Piweb - {{ title }}</title>
+        {% else %}
+        <title>Welcome to Piweb</title>
+        {% endif %}
+    </header>
+    <body>
+        <div>
+            Piweb:
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('gpio') }}">gpio</a>
+        </div>
+        {% block content %}{% endblock %}
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </body>
+</html>

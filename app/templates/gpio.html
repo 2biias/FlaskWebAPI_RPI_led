@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content">
+    <h1 style="text-align: center">Raspberry Pi gpio interface</h1>
+    <h3 style="text-align: center">LEDs</h3>
+    
+    <table border="1">
+        <tr>
+            <th>LED no.</th>
+            <th>Gpio</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+
+        {% for led in leds %}
+                <tr>
+                    <td>{{ led.id-1 }}</td>
+                    <td>{{ led.gpionumber }}</td>
+                    <td>{{ led.state }}</td>
+                    <td>
+                        <form action="/gpio/{{led.gpionumber}}" method="post">
+                            <button type="submit">Toggle</button>
+                        </form>
+                    </td>
+                </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <br>
+</div>
+{% endblock %}
